@@ -16,7 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+	private String userName;
+	private String userPass;
 	// CONNECTION METHODS
 	// Attempts to get connection to server, StackTraces on failure
 	public Connection getConnection(){
@@ -115,16 +116,30 @@ public class Login extends HttpServlet {
 		return testPass;
 	}
 	
+	public String getUser() {
+		return this.userName;
+	}
+	
+	public String getPass(){ 
+		return this.userPass;
+	}
+	
 	public Login() {
 		super();
 	}
-	
 	// WEBAPP METHODS
-	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+	}
+	
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)throws ServletException, IOException {
 		Login log = new Login();
 		String username = req.getParameter("username");
         String pass = req.getParameter("password");
+        
+        userName = username;
+        userPass = pass;
+        
         String tempPass = "";
         PrintWriter pww = resp.getWriter();
         
