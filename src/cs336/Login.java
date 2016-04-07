@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
+	// Attempts to get connection to server, StackTraces on failure
 	public Connection getConnection(){
 		String connectionUrl = "jdbc:mysql://localhost:3306/myDB?autoReconnect=true";
 		//String connectionUrl = "jdbc:mysql://classvm115.cs.rutgers.edu:3306/myDB?autoReconnect=true";
@@ -45,6 +46,7 @@ public class Login extends HttpServlet {
 		
 	}
 	
+	// Attempts to close existing connection, StackTraces on failure
 	public void closeConnection(Connection connection){
 		try {
 			connection.close();
@@ -53,6 +55,7 @@ public class Login extends HttpServlet {
 		}
 	}
 	
+	// Example taken from MyWebApp to learn how to insert to a table
 	public void insertUser() throws SQLException{
 		
 		String insertString = "insert into Person values(115, \"Borgida\",  \"Alex\");";
@@ -68,51 +71,32 @@ public class Login extends HttpServlet {
 		dbConnection.close();
 	}
 	
-	/* EXAMPLE OF RETURN FROM MyWebApp
-	public LinkedList<Person> getAllPeople() throws SQLException{
-		
-		LinkedList<Person> listOfPeople = new LinkedList<Person>();
-		
-		//display all tuples
-		String selectString = "select * from Person;";
-		Connection dbConnection = getConnection();
-		PreparedStatement preparedStatement = dbConnection.prepareStatement(selectString);
-		int resLength = 0;
-		ResultSet rs = preparedStatement.executeQuery(); 
-		
-		//creating a ResultSet
-		while(rs.next( )) {
-			System.out.println("row : id = " + rs.getInt("PersonID") + ", first name = " + rs.getString("FirstName") );
-			resLength++;
-			listOfPeople.add(new Person(rs.getInt("PersonID"), rs.getString("FirstName"), rs.getString("LastName")));
-		}
-		System.out.println("Select statement executed, " + resLength + " rows retrieved");
-		
-		//close everything
-		preparedStatement.close();
-		dbConnection.close();
-		
-		return listOfPeople;
-	}
-	*/
-	
+	// Uses SQL to find password associated with passed-in username, returns either password string or ""
 	public String findPassword(String userName) throws SQLException {
+		// Builds SQL statement from passed-in userName
 		String selectString = "select ";
 		selectString += userName;
 		selectString += " from UserTable;";
 		
+		// Executes built SQL statement
 		Connection dbConnection = getConnection();
 		PreparedStatement prepState = dbConnection.prepareStatement(selectString);
 		int resLength = 0;
 		String testPass = "";
 		ResultSet rs = prepState.executeQuery();
 		
+		// Checks if there are multiple users
 		if (rs.next()) {
 			System.out.println("Multiple users found");
 		}
+		
+		// Checks if there were no users with that username, returns empty password if so
 		if (rs.wasNull()) {
 			return "";
 		}
+		
+		// Cycles through all instances of username in table, gets first password as return password
+		// Users should not have more than one entry
 		while(rs.next()) {
 			System.out.println("row : userName = " + userName + ", password = " + rs.getString("password"));
 			resLength++;
@@ -135,19 +119,20 @@ public class Login extends HttpServlet {
         String tempPass = "";
         PrintWriter pww = resp.getWriter();
         
+        // Checks if either field is empty, if so returns a message for user
         if (username == "" || username == null || pass == "" || pass == null) {
         	pww.write("Please enter all fields\n");
         }
         
+        // Attempts to find password for input user
         try {
         	tempPass = log.findPassword(username);
         }
         catch (SQLException e){
         	e.printStackTrace();
         }
-        
-        
-        
+       
+        // Checks input password against found password, writes to page
         if (tempPass == pass) {
         	
         	resp.setContentType("text/html");
