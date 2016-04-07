@@ -10,12 +10,14 @@ import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
+	// CONNECTION METHODS
 	// Attempts to get connection to server, StackTraces on failure
 	public Connection getConnection(){
 		String connectionUrl = "jdbc:mysql://localhost:3306/myDB?autoReconnect=true";
@@ -55,6 +57,7 @@ public class Login extends HttpServlet {
 		}
 	}
 	
+	// QUERY METHODS
 	// Example taken from MyWebApp to learn how to insert to a table
 	public void insertUser() throws SQLException{
 		
@@ -112,10 +115,16 @@ public class Login extends HttpServlet {
 		return testPass;
 	}
 	
-	protected void doPost(HttpServlet req, HttpServletResponse resp)throws ServletException, IOException {
+	public Login() {
+		super();
+	}
+	
+	// WEBAPP METHODS
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp)throws ServletException, IOException {
 		Login log = new Login();
-		String username = req.getInitParameter("username");
-        String pass = req.getInitParameter("password");
+		String username = req.getParameter("username");
+        String pass = req.getParameter("password");
         String tempPass = "";
         PrintWriter pww = resp.getWriter();
         
@@ -134,7 +143,6 @@ public class Login extends HttpServlet {
        
         // Checks input password against found password, writes to page
         if (tempPass == pass) {
-        	
         	resp.setContentType("text/html");
         	pww.write("<h1>Hello " + username + "</h1>");
         } else {
