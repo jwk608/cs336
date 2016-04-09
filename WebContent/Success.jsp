@@ -4,16 +4,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Login</title>
+<title>Logged In</title>
 </head>
 <body>
-	<h1>Testing JSP</h1>
-	<hr/>
-	<form action="test.jsp" method="post">
-		Username : <input type = "text" name = "username"><br>
-		Password : <input type = "password" name = "password"><br>
-		<input type="submit" value="Login">
-		<td colspan="2">Not Registered? <a href="Registration.jsp">Register Here</a></td>
+<p> You have successfully logged in.</p>
+<form action="index.jsp" method="post">
+		<input type="submit" value="Log Out">
 	</form>
 </body>
 </html>
