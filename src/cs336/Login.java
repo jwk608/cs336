@@ -82,7 +82,7 @@ public class Login extends HttpServlet {
 		System.out.println("Finding password for "+userName);
 		String selectString = "select ";
 		selectString += userName;
-		selectString += " from UserTable;";
+		selectString += " from Users;";
 		
 		System.out.println("SQL statement is " + selectString);
 		
