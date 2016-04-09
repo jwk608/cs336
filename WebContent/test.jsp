@@ -27,7 +27,11 @@
 			e.printStackTrace();
 		}
     	
-    	System.out.println("Found results, first password was " + testPass + ", finishing");
+    	if(testPass == null || testPass == "") {
+    		System.out.println("No results found");
+    	} else {
+    		System.out.println("Found results, password was " + testPass + ", finishing");
+    	}
     	
     	if (testPass == pwd) {
     		System.out.println("We did it boys");
