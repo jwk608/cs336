@@ -19,7 +19,7 @@ if (conn == null) {
 Statement stmt = conn.createStatement();
 System.out.println(stmt);
 
-int i = stmt.executeUpdate("insert into members(userName, password, userType, lastName, firstName, emailAddr) values ('" + userName + "','" + password + "','" + lastName + "','" + firstName + "','" + emailAddr + "', CURDATE())");
+int i = stmt.executeUpdate("insert into Users(userName, password, userType, lastName, firstName, emailAddr) values ('" + userName + "','" + password + "','" + lastName + "','" + firstName + "','" + emailAddr + "', CURDATE())");
 if (i > 0) {
   
     response.sendRedirect("success.jsp");
