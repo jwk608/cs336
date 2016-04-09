@@ -78,6 +78,7 @@ public class Login extends HttpServlet {
 	// Uses SQL to find password associated with passed-in username, returns either password string or ""
 	public String findPassword(String userName) throws SQLException {
 		// Builds SQL statement from passed-in userName
+		if (userName == "" || userName == null) return "";
 		String selectString = "select ";
 		selectString += userName;
 		selectString += " from UserTable;";

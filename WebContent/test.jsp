@@ -22,16 +22,16 @@
     	System.out.println(selectString);
     	
     	// Get connection to sql server
-    	Connection dbConnection = log.getConnection();
+    	/*Connection dbConnection = log.getConnection();
     	if (dbConnection == null) {
     		out.println("Connection error");
     	}
     	
     	// Format string to query and execute
-    	//PreparedStatement prepState = dbConnection.prepareStatement(selectString);
+    	PreparedStatement prepState = dbConnection.prepareStatement("'"+selectString+"'");
     	int resLength = 0;
 		String testPass = "";
-    	/*ResultSet rs = prepState.executeQuery();
+    	ResultSet rs = prepState.executeQuery();
     	
     	// Checks if there are multiple users
     	if (rs.next()) {
@@ -53,13 +53,19 @@
     			testPass = rs.getString("password");
     		}
     	}*/
-    	
-    	System.out.println("Found " + resLength + " results, first password was " + testPass + ", finishing");
+    	String testPass = "";
+    	try {
+    		log.findPassword(userName);
+    	} 
+    	catch (SQLException e) {
+			e.printStackTrace();
+		}
+    	System.out.println("Found results, first password was " + testPass + ", finishing");
     	
     	//prepState.close();
-    	if (dbConnection != null) {
+    	/*if (dbConnection != null) {
     		log.closeConnection(dbConnection);
-    	}
+    	}*/
     	if (testPass == pwd) {
     		System.out.println("We did it boys");
     		response.sendRedirect("Success.jsp");
