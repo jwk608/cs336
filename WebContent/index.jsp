@@ -12,7 +12,8 @@
 	<form action="test.jsp" method="post">
 		Username : <input type = "text" name = "username"><br>
 		Password : <input type = "password" name = "password"><br>
-		<input type="submit" value="Login">
+		<input type="submit" value="Login"><br>
+		<td colspan="2">Not Registered? <a href="Registration.jsp">Register Here</a></td>
 	</form>
 </body>
 </html>
