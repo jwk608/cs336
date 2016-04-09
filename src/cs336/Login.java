@@ -79,20 +79,29 @@ public class Login extends HttpServlet {
 	public String findPassword(String userName) throws SQLException {
 		// Builds SQL statement from passed-in userName
 		if (userName == "" || userName == null) return "";
+		System.out.println("Finding password for "+userName);
 		String selectString = "select ";
 		selectString += userName;
 		selectString += " from UserTable;";
 		
+		System.out.println("SQL statement is " + selectString);
+		
 		// Executes built SQL statement
 		Connection dbConnection = getConnection();
+		if (dbConnection == null) return "";
 		PreparedStatement prepState = dbConnection.prepareStatement(selectString);
 		int resLength = 0;
 		String testPass = "";
+		
+		System.out.println("Attempting to execute SQL");
 		ResultSet rs = prepState.executeQuery();
 		
 		// Checks if there are multiple users
 		if (rs.next()) {
 			System.out.println("Multiple users found");
+		} else {
+			System.out.println("No users found");
+			return "";
 		}
 		
 		// Checks if there were no users with that username, returns empty password if so
@@ -109,9 +118,11 @@ public class Login extends HttpServlet {
 				testPass = rs.getString("password");
 			}
 		}
-		
-		System.out.println("Found " + resLength + " results, first password was " + testPass + ", finishing");
-		
+		if (resLength == 0) {
+			System.out.println("No password found");
+		} else {
+			System.out.println("Found " + resLength + " results, first password was " + testPass + ", finishing");
+		}
 		prepState.close();
 		dbConnection.close();
 		return testPass;
