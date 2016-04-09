@@ -11,34 +11,35 @@
     <body>
         <form method="post" action="RegTest.jsp">
             <center>
-            <table border="1" width="40%" cellpadding="5">
+            <table border="1" width="40%" cellpadding="7">
                 <thead>
                     <tr>
-                        <th colspan="4">Registration</th>
+                        <th colspan="4">Register Now!</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>User Name</td>
-                        <td><input type="text" name="uname" value="" /></td>
+                        <td><input type="text" name="userName" value="" /></td>
                     </tr>
                     <tr>
                         <td>Password</td>
-                        <td><input type="password" name="pwd" value="" /></td>
+                        <td><input type="password" name="password" value="" /></td>
                     </tr>
                     <tr>
-                    	
-                        <td>Email</td>
-                        <td><input type="text" name="email" value="" /></td>
+                        <td>emailAddr</td>
+                        <td><input type="emailAddr" name="emailAddr" value="" /></td>
                     </tr>
+                    
+                  
                     <tr>
                     	<td>First Name</td>
-                        <td><input type="text" name="fname" value="" /></td>
+                        <td><input type="text" name="firstName" value="" /></td>
                     </tr>
                     <tr>
                         <td>Last Name</td>
-                        <td><input type="text" name="lname" value="" /></td>
-                    </tr>
+                        <td><input type="text" name="lastName" value="" /></td>
+                        </tr>
                     <tr>
                     	<td>You are done!</td>
                         <td><input type="submit" value="Submit" /></td>

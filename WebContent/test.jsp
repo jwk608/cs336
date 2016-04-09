@@ -15,6 +15,7 @@
     	System.out.println(pwd);
     	
     	if (userName == null || userName == "" || pwd == null || pwd == "") {
+    		System.out.println("Please fill out all fields");
     		response.sendRedirect("index.jsp");
     		return;
     	}
