@@ -8,9 +8,16 @@ String firstName = request.getParameter("firstName");
 String lastName = request.getParameter("lastName");
 String emailAddr = request.getParameter("emailAddr");
 
-Class.forName("com.mysql.jdbc.Driver").newInstance();
-Connection conn = DriverManager.getConnection("jdbc:mysql:http://classvm120.cs.rutgers.edu:8080/CS336/","root","GimGamGom5"	);	
+//Class.forName("com.mysql.jdbc.Driver").newInstance();
+//Connection conn = DriverManager.getConnection("jdbc:mysql:http://classvm120.cs.rutgers.edu:8080/CS336/","root","GimGamGom5"	);	
+Connection conn = log.getConnection();
+if (conn == null) {
+	response.sendRedirect("Failure.jsp");
+	System.out.println("Connection Error");
+	return;
+}
 Statement stmt = conn.createStatement();
+System.out.println(stmt);
 
 int i = stmt.executeUpdate("insert into members(userName, password, userType, lastName, firstName, emailAddr) values ('" + userName + "','" + password + "','" + lastName + "','" + firstName + "','" + emailAddr + "', CURDATE())");
 if (i > 0) {
@@ -20,3 +27,4 @@ if (i > 0) {
 } else {
     response.sendRedirect("index.jsp");
 }
+%>
