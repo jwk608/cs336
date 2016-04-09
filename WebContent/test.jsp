@@ -28,10 +28,10 @@
     	}
     	
     	// Format string to query and execute
-    	PreparedStatement prepState = dbConnection.prepareStatement(selectString);
+    	//PreparedStatement prepState = dbConnection.prepareStatement(selectString);
     	int resLength = 0;
 		String testPass = "";
-    	ResultSet rs = prepState.executeQuery();
+    	/*ResultSet rs = prepState.executeQuery();
     	
     	// Checks if there are multiple users
     	if (rs.next()) {
@@ -41,6 +41,7 @@
     	// Checks if there were no users with that username, returns empty password if so
     	if (rs.wasNull()) {
     		out.println("No user found <a href='index.jsp'>Retry</a>");
+    		response.sendRedirect("index.jsp");
     	}
     	
     	// Cycles through all instances of username in table, gets first password as return password
@@ -51,18 +52,20 @@
     		if (testPass == "" || testPass == null) {
     			testPass = rs.getString("password");
     		}
-    	}
+    	}*/
     	
     	System.out.println("Found " + resLength + " results, first password was " + testPass + ", finishing");
     	
-    	prepState.close();
-    	dbConnection.close();
-
+    	//prepState.close();
+    	if (dbConnection != null) {
+    		log.closeConnection(dbConnection);
+    	}
     	if (testPass == pwd) {
     		System.out.println("We did it boys");
-    		response.sendRedirect("success.jsp");
+    		response.sendRedirect("Success.jsp");
     	} else {
     		out.println("Invalid password <a href='index.jsp'>Retry</a>");
+    		response.sendRedirect("index.jsp");
     	}
     %>
 </body>
