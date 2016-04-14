@@ -10,3 +10,13 @@ standard user homepage
 -list users (hold off until others complete)
 	-view user
 		-view history
+
+JAY:
+standard user homepage
+-email/alerts
+-list auctions
+	-view auction
+		-ask question
+		-bid
+		-history of bids
+		-similar items
