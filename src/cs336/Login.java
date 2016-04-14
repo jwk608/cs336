@@ -21,8 +21,9 @@ public class Login extends HttpServlet {
 	// CONNECTION METHODS
 	// Attempts to get connection to server, StackTraces on failure
 	public Connection getConnection(){
-		String connectionUrl = "jdbc:mysql://localhost:3306/myDB?autoReconnect=true";
+		//String connectionUrl = "jdbc:mysql://localhost:3306/myDB?autoReconnect=true";
 		//String connectionUrl = "jdbc:mysql://classvm115.cs.rutgers.edu:3306/myDB?autoReconnect=true";
+		String connectionUrl = "jdbc:mysql:http://classvm120.cs.rutgers.edu:8080/CS336/";
 		Connection connection = null;
 		
 		try {
@@ -38,8 +39,9 @@ public class Login extends HttpServlet {
 			e.printStackTrace();
 		}
 		try {
-			connection = DriverManager.getConnection(connectionUrl,"root", "root");
+			//connection = DriverManager.getConnection(connectionUrl,"root", "root");
 			//connection = DriverManager.getConnection(connectionUrl,"root", "GimGamGam99");
+			connection = DriverManager.getConnection(connectionUrl, "root", "GimGamGom5");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -78,20 +80,30 @@ public class Login extends HttpServlet {
 	// Uses SQL to find password associated with passed-in username, returns either password string or ""
 	public String findPassword(String userName) throws SQLException {
 		// Builds SQL statement from passed-in userName
+		if (userName == "" || userName == null) return "";
+		System.out.println("Finding password for "+userName);
 		String selectString = "select ";
 		selectString += userName;
-		selectString += " from UserTable;";
+		selectString += " from Users;";
+		
+		System.out.println("SQL statement is " + selectString);
 		
 		// Executes built SQL statement
 		Connection dbConnection = getConnection();
+		if (dbConnection == null) return "";
 		PreparedStatement prepState = dbConnection.prepareStatement(selectString);
 		int resLength = 0;
 		String testPass = "";
+		
+		System.out.println("Attempting to execute SQL");
 		ResultSet rs = prepState.executeQuery();
 		
 		// Checks if there are multiple users
 		if (rs.next()) {
 			System.out.println("Multiple users found");
+		} else {
+			System.out.println("No users found");
+			return "";
 		}
 		
 		// Checks if there were no users with that username, returns empty password if so
@@ -108,9 +120,11 @@ public class Login extends HttpServlet {
 				testPass = rs.getString("password");
 			}
 		}
-		
-		System.out.println("Found " + resLength + " results, first password was " + testPass + ", finishing");
-		
+		if (resLength == 0) {
+			System.out.println("No password found");
+		} else {
+			System.out.println("Found " + resLength + " results, first password was " + testPass + ", finishing");
+		}
 		prepState.close();
 		dbConnection.close();
 		return testPass;

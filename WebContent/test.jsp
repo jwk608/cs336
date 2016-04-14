@@ -13,56 +13,33 @@
     <%
     	System.out.println(userName);
     	System.out.println(pwd);
-    	String selectString = "select * from UserTable where username='";
-    	selectString += userName;
-    	selectString += "' and password='";
-    	selectString += pwd;
-    	selectString += "';";
     	
-    	System.out.println(selectString);
-    	
-    	// Get connection to sql server
-    	Connection dbConnection = log.getConnection();
-    	if (dbConnection == null) {
-    		out.println("Connection error");
+    	if (userName == null || userName == "" || pwd == null || pwd == "") {
+    		System.out.println("Please fill out all fields");
+    		response.sendRedirect("index.jsp");
+    		return;
     	}
     	
-    	// Format string to query and execute
-    	PreparedStatement prepState = dbConnection.prepareStatement(selectString);
-    	int resLength = 0;
-		String testPass = "";
-    	ResultSet rs = prepState.executeQuery();
+    	String testPass = "";
+    	try {
+    		testPass = log.findPassword(userName);
+    	} 
+    	catch (SQLException e) {
+			e.printStackTrace();
+		}
     	
-    	// Checks if there are multiple users
-    	if (rs.next()) {
-    		System.out.println("Multiple users found");
+    	if(testPass == null || testPass == "") {
+    		System.out.println("No results found");
+    	} else {
+    		System.out.println("Found results, password was " + testPass + ", finishing");
     	}
     	
-    	// Checks if there were no users with that username, returns empty password if so
-    	if (rs.wasNull()) {
-    		out.println("No user found <a href='index.jsp'>Retry</a>");
-    	}
-    	
-    	// Cycles through all instances of username in table, gets first password as return password
-    	// Users should not have more than one entry
-    	while(rs.next()) {
-    		System.out.println("row : userName = " + userName + ", password = " + rs.getString("password"));
-    		resLength++;
-    		if (testPass == "" || testPass == null) {
-    			testPass = rs.getString("password");
-    		}
-    	}
-    	
-    	System.out.println("Found " + resLength + " results, first password was " + testPass + ", finishing");
-    	
-    	prepState.close();
-    	dbConnection.close();
-
     	if (testPass == pwd) {
     		System.out.println("We did it boys");
-    		response.sendRedirect("success.jsp");
+    		response.sendRedirect("Success.jsp");
     	} else {
     		out.println("Invalid password <a href='index.jsp'>Retry</a>");
+    		response.sendRedirect("index.jsp");
     	}
     %>
 </body>
