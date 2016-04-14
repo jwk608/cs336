@@ -1,3 +1,4 @@
+BRANDON:
 admin homepage
 -email page
 -create customer rep account
@@ -6,6 +7,6 @@ admin homepage
 standard user homepage
 -flag as interested
 -post auction
--list users
+-list users (hold off until others complete)
 	-view user
 		-view history
