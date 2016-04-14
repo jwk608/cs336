@@ -1,0 +1,11 @@
+admin homepage
+-email page
+-create customer rep account
+-sales report page
+
+standard user homepage
+-flag as interested
+-post auction
+-list users
+	-view user
+		-view history
