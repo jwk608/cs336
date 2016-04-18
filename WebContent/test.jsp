@@ -36,7 +36,7 @@
     	
     	if (testPass == pwd) {
     		System.out.println("We did it boys");
-    		response.sendRedirect("Success.jsp");
+    		response.sendRedirect("UserLanding.jsp");
     	} else {
     		out.println("Invalid password <a href='index.jsp'>Retry</a>");
     		response.sendRedirect("index.jsp");

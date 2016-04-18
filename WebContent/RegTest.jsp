@@ -22,7 +22,7 @@ System.out.println(stmt);
 int i = stmt.executeUpdate("insert into Users(userName, password, userType, lastName, firstName, emailAddr) values ('" + userName + "','" + password + "','" + lastName + "','" + firstName + "','" + emailAddr + "', CURDATE())");
 if (i > 0) {
   
-    response.sendRedirect("success.jsp");
+    response.sendRedirect("UserLanding.jsp");
 
 } else {
     response.sendRedirect("index.jsp");
