@@ -13,7 +13,7 @@ standard user homepage
 
 JAY:
 standard user homepage
--email/alerts
+-email/alerts(Not sure what the function of it)
 -list auctions
 	-view auction
 		-ask question

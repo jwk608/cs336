@@ -14,6 +14,7 @@
 		<a href="postAuction.jsp">Post Auction</a>
 		<a href="listUsers.jsp">List Users</a>
 		<a href="sendEmail.jsp">Email</a>
+		<a href="ListOfAuctions.jsp">ListAuctions</a>
 		<form action="index.jsp" method="post">
 			<input type="submit" value="Log Out">
 		</form>
