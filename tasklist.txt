@@ -20,3 +20,15 @@ standard user homepage
 		-bid
 		-history of bids
 		-similar items
+
+ALICIA:
+customer rep homepage
+-email page
+-questions with no answers page
+	-answer a question page
+-list users
+	-view user
+		-modify user
+-list auctions
+	-view auction 
+		-modify auction
