@@ -27,8 +27,14 @@
 	        -->
 	        <thead>
 	            <tr>
-	                <td>Id</td>
-	                <td>Name</td>
+	                <td>VIN</td>
+	                <td>Make</td>
+	                <td>Model</td>
+	                <td>Model Year</td>
+	                <td>Highest Bid</td>
+	                <td>Minimum Bid</td>
+	                <td>Closing Date</td>
+	                <td>Seller</td>
 	            </tr>
 	        </thead>
 	        <tbody>
@@ -39,12 +45,18 @@
                 die(mysql_error());
             }
             mysql_select_db("sales");
-            $results = mysql_query("SELECT * FROM demo LIMIT 10");
+            $results = mysql_query("SELECT a.VIN, i.make, i.model, i.modelYear, a.highestBid, a.minPrice, a.closeDate, a.sellerName FROM Auctions a INNER JOIN Items i ON a.VIN = i.VIN");
             while($row = mysql_fetch_array($results)) {
             ?>
 	                <tr>
-	                    <td><?php echo $row['Id']?></td>
-	                    <td><?php echo $row['Name']?></td>
+	                    <td><?php echo $row['VIN']?></td>
+	                    <td><?php echo $row['make']?></td>
+	                    <td><?php echo $row['model']?></td>
+	                    <td><?php echo $row['modelYear']?></td>
+	                    <td><?php echo $row['highestBid']?></td>
+	                    <td><?php echo $row['minPrice']?></td>
+	                    <td><?php echo $row['closeDate']?></td>
+	                    <td><?php echo $row['sellerName']?></td>
 	                </tr>
 	
 	            <?php
