@@ -1,1 +1,5 @@
-test
+FLOW
+
+index.jsp -> test.jsp 	-> index.jsp
+			-> UserLanding.jsp	->
+			-> AdminLanding.jsp	->

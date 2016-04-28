@@ -21,6 +21,8 @@
 				cookie = cookies[i];
 				out.print("Name: " + cookie.getName());
 			}
+		} else {
+			out.print("Could not get cookies");
 		}
 	%>
 	
@@ -52,31 +54,17 @@
 	                <td>Seller</td>
 	            </tr>
 	        </thead>
-	        <tbody>
-	        	
-	        	<?php
-	            $connect = mysql_connect("localhost","root", "root");
-            if (!$connect) {
-                die(mysql_error());
-            }
-            mysql_select_db("sales");
-            $results = mysql_query("SELECT a.VIN, i.make, i.model, i.modelYear, a.highestBid, a.minPrice, a.closeDate, a.sellerName FROM Auctions a INNER JOIN Items i ON a.VIN = i.VIN");
-            while($row = mysql_fetch_array($results)) {
-            ?>
-	                <tr>
-	                    <td><?php echo $row['VIN']?></td>
-	                    <td><?php echo $row['make']?></td>
-	                    <td><?php echo $row['model']?></td>
-	                    <td><?php echo $row['modelYear']?></td>
-	                    <td><?php echo $row['highestBid']?></td>
-	                    <td><?php echo $row['minPrice']?></td>
-	                    <td><?php echo $row['closeDate']?></td>
-	                    <td><?php echo $row['sellerName']?></td>
-	                </tr>
-	
-	            <?php
-	            }
-            ?>
+	        <% LinkedList<Auction> listOfPeople =log.getAllAuctions();%>
+		
+		<% for (int i=0; i<listOfPeople.size();i++){ %>
+		<tr> 
+			<td><a href = Auction.jsp><%= listOfPeople.get(i).getAuctionID() %></a></td> 
+			<td><%= listOfPeople.get(i).getVIN() %></td> 
+			<td><%= listOfPeople.get(i).getHighestBid() %></td> 
+			<td><%= listOfPeople.get(i).getSellerName() %></td> 
+			<td><a href = ModifyAuction.jsp>Modify</a></td>						
+		</tr>
+		<%} %> 
 			</tbody>
 		</table>
 	</div>

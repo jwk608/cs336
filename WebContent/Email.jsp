@@ -17,35 +17,18 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>User Name</td>
-                        <td><input type="text" name="userName" value="" /></td>
+                        <td>Recipient</td>
+                        <td><input type="text" name="receivingUser" value="" /></td>
                     </tr>
                     <tr>
-                        <td>Password</td>
-                        <td><input type="password" name="password" value="" /></td>
+                        <td>Subject</td>
+                        <td><input type="text" name="subject" value="" /></td>
                     </tr>
                     <tr>
-                        <td>emailAddr</td>
-                        <td><input type="emailAddr" name="emailAddr" value="" /></td>
+                        <td>Body</td>
+                        <td><textarea name="body"></textarea></td>
                     </tr>
-                    
-                  
-                    <tr>
-                    	<td>First Name</td>
-                        <td><input type="text" name="firstName" value="" /></td>
-                    </tr>
-                    <tr>
-                        <td>Last Name</td>
-                        <td><input type="text" name="lastName" value="" /></td>
-                        </tr>
-                    <tr>
-                    	<td>You are done!</td>
-                        <td><input type="submit" value="Submit" /></td>
-                        
-                    </tr>
-                    <tr>
-                        <td colspan="2">Already registered? <a href="index.jsp">Login Here</a></td>
-                    </tr>
+                    <td><input type="submit" value="Send" /></td>
                 </tbody>
             </table>
             </center>

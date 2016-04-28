@@ -30,12 +30,15 @@
     	
     	if(testPass == null || testPass == "") {
     		System.out.println("No results found");
+    		response.sendRedirect("index.jsp");
     	} else {
     		System.out.println("Found results, password was " + testPass + ", finishing");
     	}
     	
     	if (testPass == pwd) {
     		System.out.println("We did it boys");
+    		
+    		//create new cookie
     		Cookie loginCookie = new Cookie("user",userName);
             //setting cookie to expiry in 30 mins
             loginCookie.setMaxAge(30*60);

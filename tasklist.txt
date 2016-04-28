@@ -1,24 +1,26 @@
 BRANDON:
 admin homepage
--email page
--create customer rep account
--sales report page
+-email page x
+	- email functionality !!
+-create customer rep account x
+-sales report page refactor
 
 standard user homepage
 -flag as interested
--post auction
--list users (hold off until others complete)
+-post auction // error with insert to auction table
+-list users (hold off until others complete) // fix nulls
 	-view user
 		-view history
 
 JAY:
 standard user homepage
 -email/alerts(Not sure what the function of it)
--list auctions
-	-view auction
+-list auctions !!	
+	-view auction !!
+		-search auctions
 		-ask question
 		-bid
-		-history of bids
+		-history of bids 
 		-similar items
 
 ALICIA:
@@ -28,7 +30,7 @@ customer rep homepage
 	-answer a question page
 -list users
 	-view user
-		-modify user
+		-modify user !!
 -list auctions
 	-view auction 
-		-modify auction
+		-modify auction !!
