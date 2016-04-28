@@ -7,11 +7,13 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 
 
 public class Login extends HttpServlet {
@@ -178,5 +180,55 @@ public class Login extends HttpServlet {
         	System.out.println("Invalid Username/Password");
         	pww.write("Invalid Username/Password\n");
         }
+	}
+public LinkedList<User> getAllUsers() throws SQLException{
+		
+		LinkedList<User> listOfUsers = new LinkedList<User>();
+		
+		//display all tuples
+		String selectString = "select * from Users;";
+		Connection dbConnection = getConnection();
+		PreparedStatement preparedStatement = dbConnection.prepareStatement(selectString);
+		int resLength = 0;
+		ResultSet rs = preparedStatement.executeQuery(); 
+		
+		//creating a ResultSet
+		while(rs.next( )) {
+			System.out.println("row : id = " + rs.getString("userName") + ", passWord = " + rs.getString("passWord") );
+			resLength++;
+			listOfUsers.add(new User(rs.getString("userName"), rs.getString("passWord"), rs.getString("userType"), rs.getString("lastName")));
+		}
+		System.out.println("Select statement executed, " + resLength + " rows retrieved");
+		
+		//close everything
+		preparedStatement.close();
+		dbConnection.close();
+		
+		return listOfUsers;
+	}
+	public LinkedList<Auction> getAllAuctions() throws SQLException{
+		
+		LinkedList<Auction> listOfAuctions = new LinkedList<Auction>();
+		
+		//display all tuples
+		String selectString = "select * from Auctions;";
+		Connection dbConnection = getConnection();
+		PreparedStatement preparedStatement = dbConnection.prepareStatement(selectString);
+		int resLength = 0;
+		ResultSet rs = preparedStatement.executeQuery(); 
+		
+		//creating a ResultSet
+		while(rs.next( )) {
+			System.out.println("row : id = " + rs.getString("auctionID") + ", VIN = " + rs.getString("VIN") );
+			resLength++;
+		listOfAuctions.add(new Auction(rs.getInt("auctionID"), rs.getString("VIN"), rs.getString("sellerName"), rs.getDouble("minPrice"), rs.getDouble("highestBid")));
+		}
+		System.out.println("Select statement executed, " + resLength + " rows retrieved");
+		
+		//close everything
+		preparedStatement.close();
+		dbConnection.close();
+		
+		return listOfAuctions;
 	}
 }
