@@ -7,6 +7,7 @@ String password = request.getParameter("password");
 String firstName = request.getParameter("firstName");
 String lastName = request.getParameter("lastName");
 String emailAddr = request.getParameter("emailAddr");
+String usertype = "nor";
 
 //Class.forName("com.mysql.jdbc.Driver").newInstance();
 //Connection conn = DriverManager.getConnection("jdbc:mysql:http://classvm120.cs.rutgers.edu:8080/CS336/","root","GimGamGom5"	);	
@@ -19,7 +20,7 @@ if (conn == null) {
 Statement stmt = conn.createStatement();
 System.out.println(stmt);
 
-int i = stmt.executeUpdate("insert into Users(userName, password, userType, lastName, firstName, emailAddr) values ('" + userName + "','" + password + "','" + lastName + "','" + firstName + "','" + emailAddr + "', CURDATE())");
+int i = stmt.executeUpdate("insert into Users(userName, password, userType, lastName, firstName, emailAddr) values ('" + userName + "','" + password + "','" + usertype + "','" + lastName + "','" + firstName + "','"+ emailAddr+"')");
 if (i > 0) {
   
     response.sendRedirect("UserLanding.jsp");
