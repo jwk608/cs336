@@ -8,7 +8,7 @@
 </head>
 <h1>Users</h1>
 <body>
-<table> 
+<table>
 <%UserConnection log = new UserConnection(); %>
 		<tr> 
 			<th>username</th> 

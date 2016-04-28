@@ -36,6 +36,10 @@
     	
     	if (testPass == pwd) {
     		System.out.println("We did it boys");
+    		Cookie loginCookie = new Cookie("user",userName);
+            //setting cookie to expiry in 30 mins
+            loginCookie.setMaxAge(30*60);
+            response.addCookie(loginCookie);
     		response.sendRedirect("UserLanding.jsp");
     	} else {
     		out.println("Invalid password <a href='index.jsp'>Retry</a>");

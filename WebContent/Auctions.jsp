@@ -8,7 +8,7 @@
 </head>
 <h1>Auctions</h1>
 <body>
-<table> 
+<table>
 <%AuctionConnection log = new AuctionConnection(); %>
 		<tr> 
 			<th>auctionID</th> 

@@ -10,6 +10,21 @@
 	<div id = "title">
 		<h1>Welcome to CarSellers!</h1>
 	</div>
+	
+	<!-- Cookie actions -->
+	<%
+		Cookie cookie = null;
+		Cookie[] cookies = null;
+		cookies = request.getCookies();
+		if (cookies != null) {
+			for (int i = 0; i < cookies.length; i++) {
+				cookie = cookies[i];
+				out.print("Name: " + cookie.getName());
+			}
+		}
+	%>
+	
+	<!-- Main body -->
 	<div id = "topbar">
 		<a href="postAuction.jsp">Post Auction</a>
 		<a href="listUsers.jsp">List Users</a>
