@@ -9,7 +9,7 @@
 <h1>Auctions</h1>
 <body>
 <table> 
-<%Login log = new Login(); %>
+<%AuctionConnection log = new AuctionConnection(); %>
 		<tr> 
 			<th>auctionID</th> 
 			<th>VIN</th>
@@ -20,7 +20,7 @@
 		
 		<% for (int i=0; i<listOfPeople.size();i++){ %>
 		<tr> 
-			<td><%= listOfPeople.get(i).getAuctionID() %></td> 
+			<td><a href = Auction.jsp><%= listOfPeople.get(i).getAuctionID() %></a></td> 
 			<td><%= listOfPeople.get(i).getVIN() %></td> 
 			<td><%= listOfPeople.get(i).getHighestBid() %></td> 
 			<td><%= listOfPeople.get(i).getSellerName() %></td> 

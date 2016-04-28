@@ -23,9 +23,9 @@ public class Login extends HttpServlet {
 	// CONNECTION METHODS
 	// Attempts to get connection to server, StackTraces on failure
 	public Connection getConnection(){
-		//String connectionUrl = "jdbc:mysql://localhost:3306/myDB?autoReconnect=true";
+		String connectionUrl = "jdbc:mysql://localhost:3306/proj2016?autoReconnect=true";
 		//String connectionUrl = "jdbc:mysql://classvm115.cs.rutgers.edu:3306/myDB?autoReconnect=true";
-		String connectionUrl = "jdbc:mysql:http://classvm120.cs.rutgers.edu:8080/CS336/";
+		//String connectionUrl = "jdbc:mysql:http://classvm120.cs.rutgers.edu:8080/CS336/";
 		Connection connection = null;
 		
 		try {
@@ -180,55 +180,5 @@ public class Login extends HttpServlet {
         	System.out.println("Invalid Username/Password");
         	pww.write("Invalid Username/Password\n");
         }
-	}
-public LinkedList<User> getAllUsers() throws SQLException{
-		
-		LinkedList<User> listOfUsers = new LinkedList<User>();
-		
-		//display all tuples
-		String selectString = "select * from Users;";
-		Connection dbConnection = getConnection();
-		PreparedStatement preparedStatement = dbConnection.prepareStatement(selectString);
-		int resLength = 0;
-		ResultSet rs = preparedStatement.executeQuery(); 
-		
-		//creating a ResultSet
-		while(rs.next( )) {
-			System.out.println("row : id = " + rs.getString("userName") + ", passWord = " + rs.getString("passWord") );
-			resLength++;
-			listOfUsers.add(new User(rs.getString("userName"), rs.getString("passWord"), rs.getString("userType"), rs.getString("lastName")));
-		}
-		System.out.println("Select statement executed, " + resLength + " rows retrieved");
-		
-		//close everything
-		preparedStatement.close();
-		dbConnection.close();
-		
-		return listOfUsers;
-	}
-	public LinkedList<Auction> getAllAuctions() throws SQLException{
-		
-		LinkedList<Auction> listOfAuctions = new LinkedList<Auction>();
-		
-		//display all tuples
-		String selectString = "select * from Auctions;";
-		Connection dbConnection = getConnection();
-		PreparedStatement preparedStatement = dbConnection.prepareStatement(selectString);
-		int resLength = 0;
-		ResultSet rs = preparedStatement.executeQuery(); 
-		
-		//creating a ResultSet
-		while(rs.next( )) {
-			System.out.println("row : id = " + rs.getString("auctionID") + ", VIN = " + rs.getString("VIN") );
-			resLength++;
-		listOfAuctions.add(new Auction(rs.getInt("auctionID"), rs.getString("VIN"), rs.getString("sellerName"), rs.getDouble("minPrice"), rs.getDouble("highestBid")));
-		}
-		System.out.println("Select statement executed, " + resLength + " rows retrieved");
-		
-		//close everything
-		preparedStatement.close();
-		dbConnection.close();
-		
-		return listOfAuctions;
 	}
 }

@@ -8,9 +8,9 @@
 </head>
 <h1>Auctions</h1>
 <body>
-<table> 
-<%Login log = new Login(); %>
-		<tr> 
+<table>  
+<%AuctionConnection log = new AuctionConnection(); %>
+		<tr>
 			<th>auctionID</th> 
 			<th>VIN</th>
 			<th>highest bid</th>

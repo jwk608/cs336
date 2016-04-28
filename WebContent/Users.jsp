@@ -9,7 +9,7 @@
 <h1>Users</h1>
 <body>
 <table> 
-<%Login log = new Login(); %>
+<%UserConnection log = new UserConnection(); %>
 		<tr> 
 			<th>username</th> 
 			<th>first name</th>
