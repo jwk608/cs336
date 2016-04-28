@@ -22,6 +22,7 @@
 			<td><a href = User.jsp><%= listOfPeople.get(i).getUserName() %></a></td> 
 			<td><%= listOfPeople.get(i).getFirstName() %></td> 
 			<td><%= listOfPeople.get(i).getLastName() %></td> 			
+			<td><a href = ModifyUser.jsp>Modify</a></td>						
 		</tr>
 		<%} %> 
 	</table>

@@ -23,8 +23,7 @@
 			<td><%= listOfPeople.get(i).getAuctionID() %></td> 
 			<td><%= listOfPeople.get(i).getVIN() %></td> 
 			<td><%= listOfPeople.get(i).getHighestBid() %></td> 
-			<td><%= listOfPeople.get(i).getSellerName() %></td> 
-			<td><a href = ModifyAuction.jsp>Modify</a></td>						
+			<td><%= listOfPeople.get(i).getSellerName() %></td> 						
 		</tr>
 		<%} %> 
 	</table>
