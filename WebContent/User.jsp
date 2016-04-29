@@ -8,22 +8,29 @@
 </head>
 <h1>Users</h1>
 <body>
-<table>
+<%String username = request.getParameter("username"); %>
 <%UserConnection log = new UserConnection(); %>
-		<tr> 
-			<th>username</th> 
-			<th>first name</th>
-			<th>last name</th>
-		</tr> 	
-		<% LinkedList<User> listOfPeople =log.getAllUsers();%>
-		
-		<% for (int i=0; i<listOfPeople.size();i++){ %>
-		<tr> 
-			<td><%= listOfPeople.get(i).getUserName() %></td> 
-			<td><%= listOfPeople.get(i).getFirstName()%></td> 
-			<td><%= listOfPeople.get(i).getLastName() %></td> 			
+<table>
+		<% LinkedList<User> listOfUsers =log.getAllUsers();%>
+		<tr>
+		<% for (int i=0; i<listOfUsers.size();i++){ %>
+			<% if (username.equals(listOfUsers.get(i).getUserName())){ %>
+			<td><% out.println(listOfUsers.get(i).getUserName()); %></td> 
+			<td><% out.println(listOfUsers.get(i).getFirstName()); %></td> 
+			<td><% out.println(listOfUsers.get(i).getLastName()); %></td> 
+		<%}} %> 
 		</tr>
-		<%} %> 
-	</table>
+		<%AuctionConnection auction = new AuctionConnection(); %>
+</table>
+<table>			
+		<% LinkedList<Auction> listOfAuctions =auction.getAllAuctions();%>
+		<% for (int i=0; i<listOfAuctions.size();i++){ %>
+			<% if (username.equals(listOfAuctions.get(i).getSellerName())){ %>
+			<tr>
+			<td><% out.println(listOfAuctions.get(i).getVIN()); %></td> 
+			<td><% out.println(listOfAuctions.get(i).getHighestBid()); %></td> 									
+			</tr>
+		<%}} %> 
+</table>
 </body>
 </html>

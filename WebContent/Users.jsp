@@ -15,13 +15,14 @@
 			<th>first name</th>
 			<th>last name</th>
 		</tr> 	
-		<% LinkedList<User> listOfPeople =log.getAllUsers();%>
+		<% LinkedList<User> listOfUsers =log.getAllUsers();%>
 		
-		<% for (int i=0; i<listOfPeople.size();i++){ %>
+		<% for (int i=0; i<listOfUsers.size();i++){ %>
 		<tr> 
-			<td><a href = User.jsp><%= listOfPeople.get(i).getUserName() %></a></td> 
-			<td><%= listOfPeople.get(i).getFirstName() %></td> 
-			<td><%= listOfPeople.get(i).getLastName() %></td> 			
+			<% String user = listOfUsers.get(i).getUserName(); %>
+			<td><a href = User.jsp?username=<%=user%>><%= listOfUsers.get(i).getUserName() %></a></td> 
+			<td><%= listOfUsers.get(i).getFirstName() %></td> 
+			<td><%= listOfUsers.get(i).getLastName() %></td> 			
 			<td><a href = ModifyUser.jsp>Modify</a></td>						
 		</tr>
 		<%} %> 

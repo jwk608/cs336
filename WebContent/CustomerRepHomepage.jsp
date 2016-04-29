@@ -12,5 +12,6 @@
 <a href="UnansweredQuestions.jsp">View Questions</a><br>
 <a href="Users.jsp">View Users</a><br>
 <a href="Auctions.jsp">View Auctions</a><br>
+<a href="Items.jsp">View Items</a><br>
 </body>
 </html>

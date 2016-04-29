@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="UTF-8" import="cs336.*" import="java.util.*" import="java.sql.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -54,6 +54,7 @@
 	                <td>Seller</td>
 	            </tr>
 	        </thead>
+	        <%AuctionConnection log = new AuctionConnection(); %>
 	        <% LinkedList<Auction> listOfPeople =log.getAllAuctions();%>
 		
 		<% for (int i=0; i<listOfPeople.size();i++){ %>

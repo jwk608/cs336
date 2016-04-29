@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 </head>
 <h1>Modify User</h1>
-
 <body>
 </body>
 </html>
